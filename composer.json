@@ -52,10 +52,10 @@
         "symfony/polyfill-php56": "*"
     },
     "scripts": {
+        "cscheck": "phpcs --ignore=src/Migrations/**,/tests/*,src/Kernel.php",
+        "csfix": "phpcbf --ignore=src/Migrations/**,/tests/*,src/Kernel.php",
+        "phpstan": "phpstan analyse src/ -c phpstan.neon --level=7 --no-progress -vvv --memory-limit=1024M",
         "auto-scripts": {
-            "cscheck": "phpcs --ignore=src/Migrations/**,/tests/*,src/Kernel.php",
-            "csfix": "phpcbf --ignore=src/Migrations/**,/tests/*,src/Kernel.php",
-            "phpstan": "phpstan analyse src/ -c phpstan.neon --level=7 --no-progress -vvv --memory-limit=1024M",
             "cache:clear": "symfony-cmd",
             "assets:install %PUBLIC_DIR%": "symfony-cmd"
         },
