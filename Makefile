@@ -3,7 +3,7 @@
 # https://speakerdeck.com/mykiwi/outils-pour-ameliorer-la-vie-des-developpeurs-symfony?slide=47
 # https://blog.theodo.fr/2018/05/why-you-need-a-makefile-on-your-project/
 
-# Setup —————————————————————————————————————————————————————————————————————————
+# Setup ————————————————————————————————————————————————————————————————————————
 SHELL         = bash
 PROJECT       = strangebuzz
 EXEC_PHP      = php
@@ -29,7 +29,7 @@ wait: ## Sleep 5 seconds
 install: composer.lock ## Install vendors according to the current composer.lock file
 	$(COMPOSER) install
 
-update: composer.json ## Update vendors according to the current composer.json file
+update: composer.json ## Update vendors according to the composer.json file
 	$(COMPOSER) update
 
 check: ## Check dependencies
@@ -117,7 +117,7 @@ abort: down unserve ## Stop docker and the Symfony binary server
 cc-redis: ## Flush all Redis cache
 	$(REDIS) flushall
 
-commands: ## Display all Strangebuzz specific commands
+commands: ## Display all commands in the project namespace
 	$(SYMFONY) list $(PROJECT)
 
 load-fixtures: ## Build the db, control the schema validity, load fixtures and check the migration status
@@ -127,7 +127,7 @@ load-fixtures: ## Build the db, control the schema validity, load fixtures and c
 	$(SYMFONY) doctrine:schema:create
 	$(SYMFONY) doctrine:schema:validate
 	$(SYMFONY) doctrine:fixtures:load -n
-	$(SYMFONY) doctrine:migration:status
+	$(SYMFONY) doctrine:schema:validate
 
 init-snippet: ## Initialize a new snippet
 	$(SYMFONY) $(PROJECT):init-snippet
